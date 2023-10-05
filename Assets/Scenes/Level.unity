@@ -1688,6 +1688,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 751981ab4b02af64a8a8b83ffb1ad5f9, type: 3}
     loop: 0
     source: {fileID: 0}
+  - name: PlayButton
+    volume: 0.4
+    clip: {fileID: 8300000, guid: 343f3f656906e594a961e0a7d2629e64, type: 3}
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1164799930
 Transform:
   m_ObjectHideFlags: 0
