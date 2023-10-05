@@ -1801,7 +1801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a76e072a5a1d6043aa06ba1598b15a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 887427588}
+  distanceText: {fileID: 887427588}
   coinText: {fileID: 1086826213}
 --- !u!1 &1201390633
 GameObject:
