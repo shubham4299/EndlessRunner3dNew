@@ -7,7 +7,7 @@ using TMPro;
 public class Score : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] TextMeshProUGUI coinText;
     private float score = 0f;
     private Vector3 lastPosition;
@@ -25,7 +25,7 @@ public class Score : MonoBehaviour
 
         // Add this distance to the score
         score = Mathf.Round(distance) + GetComponent<PlayerController>().coins;
-        scoreText.text = "Distance: " + score;
+        distanceText.text = "Distance: " + score;
         coinText.text ="Coins: " + GetComponent<PlayerController>().coins;
 
 
