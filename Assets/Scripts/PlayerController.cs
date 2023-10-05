@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
         // Check for life remaining
         if (life == 0)
         {
-            //Debug.Log("life in if life==0:" + life);
-            //PlayerManager.gameOver = true;
+            Debug.Log("life in if life==0:" + life);
+            PlayerManager.gameOver = true;
         }
 
         myAnimator.SetBool("isGameStarted", true);
@@ -205,14 +205,16 @@ public class PlayerController : MonoBehaviour
             life -= 1;
             StopCoroutine("Shield");
             //Debug.Log("life -1 ke baad:" + life);
+                FindObjectOfType<AudioManager>().PlaySound("GameOver");
+
             
 
-            if (life == 0)
+           /* if (life == 0)
             {
                 //Debug.Log("life in if life==0:" + life);
                 PlayerManager.gameOver = true;
                 FindObjectOfType<AudioManager>().PlaySound("GameOver");
-            }
+            }*/
         }
     }
 

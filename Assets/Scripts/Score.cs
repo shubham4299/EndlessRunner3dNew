@@ -14,6 +14,7 @@ public class Score : MonoBehaviour
 
     void Start()
     {
+
         // Store the initial position of the player
         lastPosition = transform.position;
     }
@@ -28,7 +29,10 @@ public class Score : MonoBehaviour
         distanceText.text = "Distance: " + score;
         coinText.text ="Coins: " + GetComponent<PlayerController>().coins;
 
-
+        if(score > PlayerPrefs.GetFloat("HighScore"))
+        {
+            PlayerPrefs.SetFloat("HighScore", score);
+        }
         // Store the current position for the next frame
         //lastPosition = transform.position;
 
