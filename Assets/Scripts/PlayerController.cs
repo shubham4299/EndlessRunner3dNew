@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             PlayerManager.gameOver = true;
         }
 
-        myAnimator.SetBool("isGameStarted", true);
+        //myAnimator.SetBool("isGameStarted", true);
 
 
          //if (forwardSpeed < maxSpeed)                // player speed will only increase till maxSpeed after which speed becomes constant
