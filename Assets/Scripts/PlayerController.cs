@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.time < animationDuration)
         {
-            //controller.Move(direction * Time.fixedDeltaTime);
             return;
         }
         //Debug.Log(life);
