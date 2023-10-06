@@ -8,6 +8,8 @@ public class Score : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI distanceText;
+    [SerializeField] TextMeshProUGUI ScoreText;
+    [SerializeField] TextMeshProUGUI HighScoreText;
     [SerializeField] TextMeshProUGUI coinText;
     private float score = 0f;
     private Vector3 lastPosition;
@@ -23,6 +25,9 @@ public class Score : MonoBehaviour
     {
         // Calculate the distance the player has moved along the z-axis
         float distance = transform.position.z;
+
+        ScoreText.text = score.ToString();
+        HighScoreText.text = PlayerPrefs.GetFloat("HighScore").ToString();
 
         // Add this distance to the score
         score = Mathf.Round(distance) + GetComponent<PlayerController>().coins;
