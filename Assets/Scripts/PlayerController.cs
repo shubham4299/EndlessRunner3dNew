@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
         direction.z = forwardSpeed;
 
-        if (controller.isGrounded)
+        if (controller.isGrounded && !isCrouched)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.RightArrow) && !temp)
+        if (Input.GetKey(KeyCode.RightArrow) && controller.isGrounded && !isCrouched)
         {
             desiredLane++;
             if (desiredLane > 2)
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 desiredLane = 2;
             }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && !temp)
+        else if (Input.GetKey(KeyCode.LeftArrow) && controller.isGrounded && !isCrouched)
         {
             desiredLane--;
             if (desiredLane < 0)
@@ -104,12 +104,14 @@ public class PlayerController : MonoBehaviour
                 desiredLane = 0;
             }
         }
-        else if(Input.GetKey(KeyCode.DownArrow) && !isCrouched)
+        else if(Input.GetKey(KeyCode.DownArrow) )
         {
+            isCrouched = true;
             transform.localScale = Scale + new Vector3(0, -Scale.y / 2.0f, 0);
             forwardSpeed = 20f;
             desiredLane = 1;
             controller.radius = controllerRadius / 2.0f;
+            
         }
         else
         {
@@ -117,6 +119,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = Scale;
             desiredLane = 1;
             forwardSpeed = 7f;
+            isCrouched = false;
         }
 
 
