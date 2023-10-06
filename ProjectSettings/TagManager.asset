@@ -9,6 +9,7 @@ TagManager:
   - Life
   - Shield
   - Coin
+  - obstacle
   layers:
   - Default
   - TransparentFX

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4124971707055814445}
   - component: {fileID: 3386498322290506416}
   - component: {fileID: 2505036765086723117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BLADE1
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 3386498322694477506}
   m_Layer: 0
   m_Name: CutterVertical
-  m_TagString: obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

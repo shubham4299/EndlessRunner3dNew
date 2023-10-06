@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7652614590496611656}
   - component: {fileID: 7652614590496611657}
   - component: {fileID: 7652614590496611658}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire (4)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -4852,7 +4852,7 @@ GameObject:
   - component: {fileID: 7652614590552817260}
   - component: {fileID: 7652614590552817261}
   - component: {fileID: 7652614590552817262}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire (2)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -9663,7 +9663,7 @@ GameObject:
   - component: {fileID: 7652614591108973419}
   - component: {fileID: 7652614591108973428}
   - component: {fileID: 7652614591108973429}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire (3)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -14420,7 +14420,7 @@ GameObject:
   - component: {fileID: 7652614591134731364}
   - component: {fileID: 7652614591134731365}
   - component: {fileID: 7652614591134731366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fire (1)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

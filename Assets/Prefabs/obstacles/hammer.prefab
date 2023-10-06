@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3217007438440697130}
   - component: {fileID: 811189379624925664}
   - component: {fileID: 1948581641509339790}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tenderizing Hammer
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 7482528857121649125}
   - component: {fileID: 7482528857121649126}
   - component: {fileID: 7482528857121649124}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TendarizingHammer
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
