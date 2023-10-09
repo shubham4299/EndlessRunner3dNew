@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        Debug.Log(life);
+        //Debug.Log(life);
 
         // Check for life remaining
         if (life <= 0)
@@ -75,28 +75,13 @@ public class PlayerController : MonoBehaviour
 
         direction.z = forwardSpeed;
 
-        if (controller.isGrounded && !isCrouched)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                Jump();
-            }
-        }
-        else
-        {
-            direction.y += gravity * Time.deltaTime;
-        }
 
-
-        if (Input.GetKey(KeyCode.RightArrow) && controller.isGrounded && !isCrouched)
+        if(Input.GetKey(KeyCode.UpArrow) && !isCrouched)
         {
-            desiredLane++;
-            if (desiredLane > 2)
-            {
-                desiredLane = 2;
-            }
+            desiredLane = 1;
+            PlayerScale();
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && controller.isGrounded && !isCrouched)
+        else if (Input.GetKey(KeyCode.LeftArrow) && !isCrouched)
         {
             desiredLane--;
             if (desiredLane < 0)
@@ -104,22 +89,31 @@ public class PlayerController : MonoBehaviour
                 desiredLane = 0;
             }
         }
-        else if(Input.GetKey(KeyCode.DownArrow) )
+        else if(Input.GetKey(KeyCode.RightArrow) && !isCrouched)
+        {
+            desiredLane++;
+            if (desiredLane > 2)
+            {
+                desiredLane = 2;
+            }
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             isCrouched = true;
-            PlayerScale();
+            transform.localScale = Scale + new Vector3(0, -Scale.y / 2.0f, 0);
+            forwardSpeed = 20f;
+            desiredLane = 1;
+            controller.radius = controllerRadius / 2.0f;
         }
         else
         {
-            controller.radius = controllerRadius;
-            transform.localScale = Scale;
-            desiredLane = 1;
-            forwardSpeed = 7f;
             isCrouched = false;
+            transform.localScale = Scale;
+            controller.radius = controllerRadius;
+            forwardSpeed = 7f;
+            desiredLane = 1;
+            direction.y += gravity * Time.deltaTime;
         }
-
-
-
 
 
         Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
