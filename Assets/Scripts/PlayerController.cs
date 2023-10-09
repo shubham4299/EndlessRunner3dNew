@@ -56,10 +56,10 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        //Debug.Log(life);
+        Debug.Log(life);
 
         // Check for life remaining
-        if (life == 0)
+        if (life <= 0)
         {
             Debug.Log("life in if life==0:" + life);
             PlayerManager.gameOver = true;
@@ -107,11 +107,7 @@ public class PlayerController : MonoBehaviour
         else if(Input.GetKey(KeyCode.DownArrow) )
         {
             isCrouched = true;
-            transform.localScale = Scale + new Vector3(0, -Scale.y / 2.0f, 0);
-            forwardSpeed = 20f;
-            desiredLane = 1;
-            controller.radius = controllerRadius / 2.0f;
-            
+            PlayerScale();
         }
         else
         {

@@ -42,7 +42,7 @@ public class Score : MonoBehaviour
         //lastPosition = transform.position;
 
         // Display the score
-        Debug.Log("Score: " + score);
+        //Debug.Log("Score: " + score);
     }
 }
 
