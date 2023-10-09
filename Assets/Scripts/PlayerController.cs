@@ -68,13 +68,13 @@ public class PlayerController : MonoBehaviour
         //myAnimator.SetBool("isGameStarted", true);
 
 
-         //if (forwardSpeed < maxSpeed)                // player speed will only increase till maxSpeed after which speed becomes constant
-         //{
-         //      forwardSpeed += speedFactor * Time.deltaTime;  // Increasing player speed with time
-         //}
+         if (forwardSpeed < maxSpeed)                // player speed will only increase till maxSpeed after which speed becomes constant
+         {
+               forwardSpeed += speedFactor * Time.deltaTime;  // Increasing player speed with time
+         }
 
         direction.z = forwardSpeed;
-
+        
 
         if(Input.GetKey(KeyCode.UpArrow) && !isCrouched)
         {
@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
         {
             isCrouched = true;
             transform.localScale = Scale + new Vector3(0, -Scale.y / 2.0f, 0);
-            forwardSpeed = 20f;
             desiredLane = 1;
             controller.radius = controllerRadius / 2.0f;
         }
@@ -110,7 +109,6 @@ public class PlayerController : MonoBehaviour
             isCrouched = false;
             transform.localScale = Scale;
             controller.radius = controllerRadius;
-            forwardSpeed = 7f;
             desiredLane = 1;
             direction.y += gravity * Time.deltaTime;
         }
@@ -160,7 +158,6 @@ public class PlayerController : MonoBehaviour
     {
         transform.localScale = Scale + new Vector3(-Scale.x / 2.0f, Scale.y / 4.0f, 0);
         controller.radius = controllerRadius / 2.0f;
-        forwardSpeed = 15f;
     }
 
 
