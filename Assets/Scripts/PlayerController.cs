@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public float life = 1;
 
-    bool temp = false;
+    
     bool isCrouched = false;
 
     static public PlayerController Instance;

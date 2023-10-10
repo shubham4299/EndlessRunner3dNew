@@ -78,7 +78,7 @@ public class PowerUpsAndbstacle : MonoBehaviour
     // Detecting Collision with burner flames 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("true");
+        //Debug.Log("true");
         PlayerController.Instance.life--;
     }
 }
