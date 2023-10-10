@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Coin
   - obstacle
+  - jump
   layers:
   - Default
   - TransparentFX

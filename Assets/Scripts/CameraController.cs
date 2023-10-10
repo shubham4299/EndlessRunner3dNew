@@ -16,17 +16,17 @@ public class CameraController : MonoBehaviour
         offset = transform.position-target.position;
     }
 
-    //void LateUpdate()
-    //{
-    //    Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, offset.z + target.position.z);
-    //    transform.position = newPosition;
-    //}
+   /* void LateUpdate()
+    {
+        Vector3 newPosition = new Vector3(transform.position.x, transform.position.y, offset.z + target.position.z);
+        transform.position = newPosition;
+    }*/
 
-    private void Update()
+   private void Update()
     {
         moveVector= target.position + offset;
         moveVector.x = 0;
-        moveVector.y = Mathf.Clamp(moveVector.y, 3, 5);
+        //moveVector.y = Mathf.Clamp(moveVector.y, 3, 5);
         if (transition > 1)
         {
             transform.position = moveVector;
