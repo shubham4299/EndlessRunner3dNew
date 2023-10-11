@@ -2032,6 +2032,7 @@ GameObject:
   - component: {fileID: 1185564511}
   - component: {fileID: 1185564517}
   - component: {fileID: 1185564518}
+  - component: {fileID: 1185564519}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -2069,8 +2070,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640c313c38f3280418a81210ba94ef7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 5
+  forwardSpeed: 12
   maxSpeed: 20
+  moveSpeed: 2
   speedFactor: 0.25
   laneDistance: 1
   jumpForce: 20
@@ -2177,6 +2179,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1185564519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185564510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d868fd3760a602d449cf2c1071ffe0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 380131187}
 --- !u!1 &1201390633
 GameObject:
   m_ObjectHideFlags: 0
