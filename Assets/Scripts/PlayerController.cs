@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator myAnimator;
     [SerializeField] private float controllerRadius;
 
+    float totalCoins;
+
 
 
     public float life = 1;
@@ -179,6 +181,8 @@ public class PlayerController : MonoBehaviour
     void CollectCoin()
     {
         coins++;
+        totalCoins = PlayerPrefs.GetFloat("totalCoins") + 1;
+        PlayerPrefs.SetFloat("totalCoins", totalCoins);
         Debug.Log("Coin collected! Total coins: " + coins); //function that holds record for how many coins are collected
     }
     //----------------------------------------------------------------- 

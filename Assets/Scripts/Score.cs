@@ -13,10 +13,11 @@ public class Score : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinText;
     private float score = 0f;
     private Vector3 lastPosition;
+    float totalCoins=0;
 
     void Start()
     {
-
+        //totalCoins = 0f;
         // Store the initial position of the player
         lastPosition = transform.position;
     }
@@ -34,7 +35,11 @@ public class Score : MonoBehaviour
         distanceText.text = "Distance: " + score;
         coinText.text ="Coins: " + GetComponent<PlayerController>().coins;
 
-        if(score > PlayerPrefs.GetFloat("HighScore"))
+        //totalCoins += GetComponent<PlayerController>().coins;
+
+       // PlayerPrefs.SetFloat("totalCoins", GetComponent<PlayerController>().coins);
+
+        if (score > PlayerPrefs.GetFloat("HighScore"))
         {
             PlayerPrefs.SetFloat("HighScore", score);
         }
