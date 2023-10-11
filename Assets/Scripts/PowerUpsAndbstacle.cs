@@ -12,15 +12,6 @@ public class PowerUpsAndbstacle : MonoBehaviour
             StopCoroutine("Shield");
             //Debug.Log("life -1 ke baad:" + life);
             FindObjectOfType<AudioManager>().PlaySound("GameOver");
-
-
-
-            /* if (life == 0)
-             {
-                 //Debug.Log("life in if life==0:" + life);
-                 PlayerManager.gameOver = true;
-                 FindObjectOfType<AudioManager>().PlaySound("GameOver");
-             }*/
         }
     }
 

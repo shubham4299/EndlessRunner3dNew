@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     Vector3 direction;
     [SerializeField] private float forwardSpeed=10;
     [SerializeField] private float maxSpeed=50;
+    [SerializeField] private float moveSpeed = 2;
     [SerializeField] private float speedFactor=0.5f;
     private float desiredLane = 1;
     [SerializeField] private float laneDistance = 2.5f;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravity = -10;
     [SerializeField] private Animator myAnimator;
     [SerializeField] private float controllerRadius;
+
+    bool isJumping = false;
 
     float totalCoins;
 
@@ -54,6 +57,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!controller.isGrounded)
+        {
+            direction.y += gravity * Time.deltaTime;
+            //moveSpeed = 5f;
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
+        }
+
         if (Time.time < animationDuration)
         {
             return;
@@ -61,11 +75,11 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(life);
 
         // Check for life remaining
-        if (life <= 0)
+      /*  if (life <= 0)
         {
             Debug.Log("life in if life==0:" + life);
             PlayerManager.gameOver = true;
-        }
+        }*/
 
         //myAnimator.SetBool("isGameStarted", true);
 
@@ -74,8 +88,8 @@ public class PlayerController : MonoBehaviour
          {
                forwardSpeed += speedFactor * Time.deltaTime;  // Increasing player speed with time
          }
-
         direction.z = forwardSpeed;
+        moveSpeed = forwardSpeed;
         
 
         if(Input.GetKey(KeyCode.UpArrow) && !isCrouched)
@@ -112,7 +126,6 @@ public class PlayerController : MonoBehaviour
             transform.localScale = Scale;
             controller.radius = controllerRadius;
             desiredLane = 1;
-            direction.y += gravity * Time.deltaTime;
         }
 
 
@@ -135,24 +148,6 @@ public class PlayerController : MonoBehaviour
 
         controller.center = controller.center; //fix for the tranform and collider override issue
 
-        //------------------------------------------------------
-        /* if (transform.position == targetPosition)
-         {
-             return;
-         }
-         Vector3 diff = targetPosition - transform.position; 
-         Vector3 moveDir = diff.normalized * 25 * Time.deltaTime;
-         if (moveDir.sqrMagnitude < diff.sqrMagnitude)
-         {
-             controller.Move(moveDir);
-         }
-         else
-         {
-             controller.Move(diff);
-         }*/
-        //----------------------------------------------------
-
-
     }
 
     //Scaling player
@@ -165,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     { 
-        controller.Move(direction * Time.fixedDeltaTime);
+        controller.Move(direction.normalized*moveSpeed * Time.fixedDeltaTime);
     }
 
     void OnEnable()
@@ -186,94 +181,14 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Coin collected! Total coins: " + coins); //function that holds record for how many coins are collected
     }
     //----------------------------------------------------------------- 
-    private void Jump()
+    public void Jump()
     {
         direction.y = jumpForce;
-    }
-
-    private void OnTriggerEnter(Collider hit)
-    {
-        if (hit.transform.tag == "Obstacle")
+        Debug.Log("jump");
+        while (isJumping)
         {
-            life -= 1;
-            StopCoroutine("Shield");
-            //Debug.Log("life -1 ke baad:" + life);
-                FindObjectOfType<AudioManager>().PlaySound("GameOver");
-
-            
-
-           /* if (life == 0)
-            {
-                //Debug.Log("life in if life==0:" + life);
-                PlayerManager.gameOver = true;
-                FindObjectOfType<AudioManager>().PlaySound("GameOver");
-            }*/
-        }
-
-        if(hit.transform.tag == "jump")
-        {
-            Jump();
+            forwardSpeed = 5f;
         }
     }
-
-
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)              
-    {
-        if (hit.transform.tag == "Life")
-        {
-            if (life == 1)  //only increasing life if life is equals to 1
-            {
-                life += 1;
-                //Debug.Log("life:(Should be 2)" + life);
-                FindObjectOfType<AudioManager>().PlaySound("PowerUp");
-                   
-            }
-            Destroy(hit.gameObject);
-        }
-
-        if (hit.transform.tag == "Superfood") 
-        {
-            Debug.Log("Superfood called");
-            FindObjectOfType<AudioManager>().PlaySound("PowerUp");
-            Destroy(hit.gameObject);
-            StartCoroutine("SuperFood");
-        }
-
-        if(hit.transform.tag == "Shield")
-        {
-            FindObjectOfType<AudioManager>().PlaySound("PowerUp");
-            StartCoroutine("Shield");
-            Destroy(hit.gameObject);
-        }
-    }
-
-
-    IEnumerator Shield()
-    {
-        life++;
-        Debug.Log("start");
-        yield return new WaitForSeconds(30f);
-        Debug.Log("end");
-        life--;
-    }
-
-
-    IEnumerator SuperFood()
-    {
-        
-        Physics.IgnoreLayerCollision(6, 7, true);
-        yield return new WaitForSeconds(10);
-        Physics.IgnoreLayerCollision(6, 7, false);
-    }
-
-    // Detecting Collision with burner flames 
-    private void OnParticleCollision(GameObject other)
-    {
-            Debug.Log("true");
-            life--;
-    }
-
-    
 
 }
