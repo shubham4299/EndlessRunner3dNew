@@ -209,6 +209,11 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<AudioManager>().PlaySound("GameOver");
             }*/
         }
+
+        if(hit.transform.tag == "jump")
+        {
+            Jump();
+        }
     }
 
 
@@ -268,5 +273,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("true");
             life--;
     }
+
+    
 
 }
