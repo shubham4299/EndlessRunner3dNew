@@ -20,12 +20,12 @@ public class RoadManager : MonoBehaviour
             if (i == 0)
             {
                 // The first road segment is chosen explicitly (index 0)
-                SpawnRoad(0);
+                SpawnRoad2(0);
             }
             else
             {
                 // Randomly choose a road segment to spawn
-                SpawnRoad(Random.Range(0, roadPrefabs.Length));
+                SpawnRoad2(Random.Range(0, roadPrefabs.Length));
             }
         }
     }
@@ -36,7 +36,7 @@ public class RoadManager : MonoBehaviour
         if (player.position.z - safeZoneValue > zSpawn - (numberOfRoads * roadLength))
         {
             // Spawn a new road segment randomly
-            SpawnRoad(Random.Range(0, roadPrefabs.Length));
+            SpawnRoad2(Random.Range(0, roadPrefabs.Length));
 
             // Delete the oldest road segment that is no longer visible
             DeleteRoad();
@@ -47,6 +47,23 @@ public class RoadManager : MonoBehaviour
     {
         // Instantiate a new road segment at the specified position (forward along Z-axis)
         GameObject temp = Instantiate(roadPrefabs[roadIndex], transform.forward * zSpawn, transform.rotation);
+
+        // Add the newly created road segment to the list of active roads
+        activeRoads.Add(temp);
+
+        // Move the spawn position ahead by the length of the road segment
+        zSpawn += roadLength;
+    }
+
+    public void SpawnRoad2(int roadIndex)
+    {
+        // Generate a random offset for the x-coordinate that is either -2 or 2
+        int[] values = { -2, 2 };
+        int randomIndex = Random.Range(0, 2);
+        int xOffset = values[randomIndex];
+
+        // Instantiate a new road segment at the specified position (forward along Z-axis with a slight offset in X-axis)
+        GameObject temp = Instantiate(roadPrefabs[roadIndex], transform.forward * zSpawn + new Vector3(xOffset, 0, 0), transform.rotation);
 
         // Add the newly created road segment to the list of active roads
         activeRoads.Add(temp);

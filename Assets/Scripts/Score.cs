@@ -13,7 +13,7 @@ public class Score : MonoBehaviour
     [SerializeField] TextMeshProUGUI coinText;
     private float score = 0f;
     private Vector3 lastPosition;
-    float totalCoins=0;
+
 
     void Start()
     {
