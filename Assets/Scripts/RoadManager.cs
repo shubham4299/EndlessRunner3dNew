@@ -20,12 +20,12 @@ public class RoadManager : MonoBehaviour
             if (i == 0)
             {
                 // The first road segment is chosen explicitly (index 0)
-                SpawnRoad2(0);
+                SpawnRoad(0);
             }
             else
             {
                 // Randomly choose a road segment to spawn
-                SpawnRoad2(Random.Range(0, roadPrefabs.Length));
+                SpawnRoad(Random.Range(0, roadPrefabs.Length));
             }
         }
     }
@@ -36,7 +36,7 @@ public class RoadManager : MonoBehaviour
         if (player.position.z - safeZoneValue > zSpawn - (numberOfRoads * roadLength))
         {
             // Spawn a new road segment randomly
-            SpawnRoad2(Random.Range(0, roadPrefabs.Length));
+            SpawnRoad(Random.Range(0, roadPrefabs.Length));
 
             // Delete the oldest road segment that is no longer visible
             DeleteRoad();
@@ -58,7 +58,7 @@ public class RoadManager : MonoBehaviour
     public void SpawnRoad2(int roadIndex)
     {
         // Generate a random offset for the x-coordinate that is either -2 or 2
-        int[] values = { -2, 2 };
+        int[] values = { -2,0,2 };
         int randomIndex = Random.Range(0, 2);
         int xOffset = values[randomIndex];
 
