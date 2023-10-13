@@ -185,10 +185,7 @@ public class PlayerController : MonoBehaviour
     {
         direction.y = jumpForce;
         Debug.Log("jump");
-        while (isJumping)
-        {
-            forwardSpeed = 5f;
-        }
+        
     }
 
 }

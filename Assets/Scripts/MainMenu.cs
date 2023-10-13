@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI HighScore;
     [SerializeField] TextMeshProUGUI totalCoins;
+    [SerializeField] TextMeshProUGUI totalShopCoins;
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +21,6 @@ public class MainMenu : MonoBehaviour
     {
         HighScore.text = PlayerPrefs.GetFloat("HighScore").ToString();
         totalCoins.text = PlayerPrefs.GetFloat("totalCoins").ToString();
+        totalShopCoins.text = PlayerPrefs.GetFloat("totalCoins").ToString();
     }
 }

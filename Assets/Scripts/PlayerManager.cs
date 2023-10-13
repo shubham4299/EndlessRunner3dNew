@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         gameOver = false;
-        //Time.timeScale = 1.0f;
+        Time.timeScale = 1.0f;
     }
 
     void Update()
@@ -71,10 +71,10 @@ public class PlayerManager : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("GameOver");
         }
 
-        if (hit.transform.tag == "jump")
-        {
-            PlayerController.Instance.Jump();
-        }
+        //if (hit.transform.tag == "jump")
+        //{
+        //    PlayerController.Instance.Jump();
+        //}
     }
 
     IEnumerator Shield()
