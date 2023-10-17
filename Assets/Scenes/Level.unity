@@ -633,10 +633,10 @@ Animator:
   m_GameObject: {fileID: 542255658}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 29a2f3d1771262f4393d800a92f280d9, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2090,7 +2090,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185564510}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2178,7 +2178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 380131187}
-  myAnima: {fileID: 542255660}
+  myAnima: {fileID: 1185564523}
 --- !u!54 &1185564521
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2219,8 +2219,8 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 29a2f3d1771262f4393d800a92f280d9, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
