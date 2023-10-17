@@ -11,6 +11,8 @@ TagManager:
   - Coin
   - obstacle
   - jump
+  - LeftRoad
+  - RightRoad
   layers:
   - Default
   - TransparentFX

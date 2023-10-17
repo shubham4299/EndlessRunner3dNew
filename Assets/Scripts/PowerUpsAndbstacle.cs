@@ -13,6 +13,13 @@ public class PowerUpsAndbstacle : MonoBehaviour
             //Debug.Log("life -1 ke baad:" + life);
             FindObjectOfType<AudioManager>().PlaySound("GameOver");
         }
+        if (hit.transform.tag == "LeftRoad")
+        {
+            transform.position = new Vector3(transform.position.x - 3, transform.position.y, transform.position.z);
+            //transform.position=Vector3.left * 3;
+            //Debug.Log("Go left");
+            // PlayerController.Instance.targetPosition = PlayerController.Instance.targetPosition += Vector3.left* 3* PlayerController.Instance.laneDistance;
+        }
     }
 
 
