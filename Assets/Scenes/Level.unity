@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &309608335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 380131187}
+  myAnima: {fileID: 0}
 --- !u!4 &309608336
 Transform:
   m_ObjectHideFlags: 0
@@ -2015,7 +2016,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {fileID: 16992914}
   force: 50
-  RB: {fileID: 1185564518}
+  RB: {fileID: 0}
 --- !u!1 &1185564510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,8 +2031,10 @@ GameObject:
   - component: {fileID: 1185564512}
   - component: {fileID: 1185564511}
   - component: {fileID: 1185564517}
-  - component: {fileID: 1185564518}
   - component: {fileID: 1185564519}
+  - component: {fileID: 1185564521}
+  - component: {fileID: 1185564522}
+  - component: {fileID: 1185564523}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -2069,15 +2072,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640c313c38f3280418a81210ba94ef7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 12
+  controller: {fileID: 1185564511}
+  forwardSpeed: 10
   maxSpeed: 20
-  moveSpeed: 2
   speedFactor: 0.25
   laneDistance: 1
   jumpForce: 20
   gravity: -30
-  myAnimator: {fileID: 542255660}
   controllerRadius: 0
+  targetPosition: {x: 0, y: 0, z: 0}
   life: 1
   coins: 0
 --- !u!23 &1185564514
@@ -2087,7 +2090,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185564510}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2138,7 +2141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185564510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.62, z: 2.3}
+  m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1.16, y: 1.16, z: 1.16}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2162,7 +2165,21 @@ MonoBehaviour:
   ScoreText: {fileID: 2142635431}
   HighScoreText: {fileID: 1703504926}
   coinText: {fileID: 1086826213}
---- !u!54 &1185564518
+--- !u!114 &1185564519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185564510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d868fd3760a602d449cf2c1071ffe0e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 380131187}
+  myAnima: {fileID: 542255660}
+--- !u!54 &1185564521
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2178,19 +2195,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1185564519
+--- !u!114 &1185564522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185564510}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d868fd3760a602d449cf2c1071ffe0e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 33abe151454eb2845a29bcd9e8861290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 380131187}
+--- !u!95 &1185564523
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185564510}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 29a2f3d1771262f4393d800a92f280d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1201390633
 GameObject:
   m_ObjectHideFlags: 0

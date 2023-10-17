@@ -7,37 +7,36 @@ public class PlayerController : MonoBehaviour
 {
     Vector3 Scale;
 
-    private CharacterController controller;
+    public CharacterController controller;
     Vector3 direction;
     [SerializeField] private float forwardSpeed=10;
     [SerializeField] private float maxSpeed=50;
-    [SerializeField] private float moveSpeed = 2;
+    //[SerializeField] private float moveSpeed = 2;
     [SerializeField] private float speedFactor=0.5f;
     private float desiredLane = 1;
-    [SerializeField] private float laneDistance = 2.5f;
+   public float laneDistance = 2.5f;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravity = -10;
-    [SerializeField] private Animator myAnimator;
+    //[SerializeField] private Animator myAnimator;
     [SerializeField] private float controllerRadius;
 
-    bool isJumping = false;
+    //bool isJumping = false;
 
     float totalCoins;
 
-
+    public Vector3 targetPosition;
 
     public float life = 1;
 
-    
     bool isCrouched = false;
 
     static public PlayerController Instance;
-    private float animationDuration=2f;
+    private float animationDuration=1f;
     public float coins;
 
     private void Awake()
     {
-        if(Instance!= null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(Instance);
         }
@@ -55,44 +54,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        controller.Move(direction.normalized * forwardSpeed * Time.fixedDeltaTime);
+    }
+
     void Update()
     {
-        if (!controller.isGrounded)
-        {
-            direction.y += gravity * Time.deltaTime;
-            //moveSpeed = 5f;
-            isJumping = true;
-        }
-        else
-        {
-            isJumping = false;
-        }
-
-        if (Time.time < animationDuration)
+        //controller.Move(direction.normalized * forwardSpeed * Time.deltaTime);
+        if (Time.time < animationDuration) //the game will only start after waiting 1sec
         {
             return;
         }
-        //Debug.Log(life);
 
-        // Check for life remaining
-      /*  if (life <= 0)
-        {
-            Debug.Log("life in if life==0:" + life);
-            PlayerManager.gameOver = true;
-        }*/
+        //if (!controller.isGrounded)
+        //{
+        //    //direction.y += gravity * Time.deltaTime;
+        //    //moveSpeed = 5f;
+        //    isJumping = true;
+        //}
+        //else
+        //{
+        //    isJumping = false;
+        //}
+        IncreaseSpeed();
 
-        //myAnimator.SetBool("isGameStarted", true);
-
-
-         if (forwardSpeed < maxSpeed)                // player speed will only increase till maxSpeed after which speed becomes constant
-         {
-               forwardSpeed += speedFactor * Time.deltaTime;  // Increasing player speed with time
-         }
-        direction.z = forwardSpeed;
-        moveSpeed = forwardSpeed;
-        
-
-        if(Input.GetKey(KeyCode.UpArrow) && !isCrouched)
+        if (Input.GetKey(KeyCode.UpArrow) && !isCrouched)
         {
             desiredLane = 1;
             PlayerScale();
@@ -105,7 +92,7 @@ public class PlayerController : MonoBehaviour
                 desiredLane = 0;
             }
         }
-        else if(Input.GetKey(KeyCode.RightArrow) && !isCrouched)
+        else if (Input.GetKey(KeyCode.RightArrow) && !isCrouched)
         {
             desiredLane++;
             if (desiredLane > 2)
@@ -129,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
+        targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
 
         //Checking Lanes left = 0 , middle = 1 and right = 2
         if (desiredLane == 0)
@@ -143,25 +130,25 @@ public class PlayerController : MonoBehaviour
             PlayerScale();
         }
 
-        //sDebug.Log(desiredLane);
-        transform.position = targetPosition;
-
-        controller.center = controller.center; //fix for the tranform and collider override issue
+       
+        if (transform.position == targetPosition)  //fix for the collider issue
+        {
+            return;
+        }
+        Vector3 diff = targetPosition-transform.position;
+        Vector3 moveDir=diff.normalized*25*Time.deltaTime;
+        if(moveDir.sqrMagnitude > diff.sqrMagnitude) 
+        {
+            controller.Move(moveDir);
+        }
+        else
+        {
+            controller.Move(diff);
+        }
 
     }
+    
 
-    //Scaling player
-    void PlayerScale()
-    {
-        transform.localScale = Scale + new Vector3(-Scale.x / 2.0f, Scale.y / 4.0f, 0);
-        controller.radius = controllerRadius / 2.0f;
-    }
-
-
-    private void FixedUpdate()
-    { 
-        controller.Move(direction.normalized*moveSpeed * Time.fixedDeltaTime);
-    }
 
     void OnEnable()
     {
@@ -180,12 +167,26 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetFloat("totalCoins", totalCoins);
         Debug.Log("Coin collected! Total coins: " + coins); //function that holds record for how many coins are collected
     }
-    //----------------------------------------------------------------- 
     public void Jump()
     {
         direction.y = jumpForce;
         Debug.Log("jump");
-        
+    }
+
+    void PlayerScale()//Scaling player
+    {
+        transform.localScale = Scale + new Vector3(-Scale.x / 2.0f, Scale.y / 4.0f, 0);
+        controller.radius = controllerRadius / 2.0f;
+    }
+
+    private void IncreaseSpeed()
+    {
+        if (forwardSpeed < maxSpeed)                // player speed will only increase till maxSpeed after which speed becomes constant
+        {
+            forwardSpeed += speedFactor * Time.deltaTime;  // Increasing player speed with time
+        }
+        direction.z = forwardSpeed;
+        //moveSpeed = forwardSpeed;
     }
 
 }

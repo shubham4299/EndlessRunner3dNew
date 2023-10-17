@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     public static bool gameOver;
     //public float life = 1;
 
+    [SerializeField] Animator myAnima;
+
     void Start()
     {
         gameOver = false;
@@ -71,6 +73,23 @@ public class PlayerManager : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("GameOver");
         }
 
+
+        if (hit.transform.tag == "LeftRoad")
+        {
+            //PlayerController.Instance.targetPosition = new Vector3(transform.position.x - 3, transform.position.y, transform.position.z);
+            //transform.position = new Vector3(transform.position.x - 3, transform.position.y, transform.position.z);
+            //transform.position=Vector3.left * 3;
+
+            Debug.Log("Go left");
+            myAnima.SetBool("Left", true);
+            //PlayerController.Instance.targetPosition = PlayerController.Instance.targetPosition += Vector3.left * 3 * PlayerController.Instance.laneDistance;
+        }
+        if (hit.transform.tag == "RightRoad")
+        {
+
+            Debug.Log("Go Right");
+            myAnima.SetBool("Left", false);
+        }
         //if (hit.transform.tag == "jump")
         //{
         //    PlayerController.Instance.Jump();
